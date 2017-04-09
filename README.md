@@ -14,7 +14,9 @@ Collection of scripts that allow you to seamlessly transition between 2 PostProc
 * Lerping textures (no method yet)
 * Color grading (too much work for the initial version and I hope to come up with a better coding solution)
 
-I have not tested Unity versions < 5.6. I have not extensively tested the smoothness of every single transition
+If you don't care about the rest of the staff from PostProcessing, just grab the "Transitions" folder. I haven't changed anything else (nor do I plan to)
+
+I have not tested Unity versions < 5.6. I have not extensively tested the smoothness of every single transition. Lmk if there's anything wrong.
 
 ## How to use - Time
 
