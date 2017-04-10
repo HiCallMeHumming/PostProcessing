@@ -114,6 +114,7 @@ public abstract class UpdatableProfile : MonoBehaviour
 		ScreenSpaceReflectionModel.Settings settings = oldProfile.screenSpaceReflection.settings;
 
 		// Reflection
+
 		ScreenSpaceReflectionModel.ReflectionSettings currentReflection = settings.reflection;
 		ScreenSpaceReflectionModel.ReflectionSettings futureReflection = futureProfile.screenSpaceReflection.settings.reflection;
 		currentReflection.maxDistance = Mathf.Lerp (currentReflection.maxDistance, futureReflection.maxDistance, rate);
@@ -125,6 +126,7 @@ public abstract class UpdatableProfile : MonoBehaviour
 
 
 		// Intensity
+
 		ScreenSpaceReflectionModel.IntensitySettings currentIntensity = settings.intensity;
 		ScreenSpaceReflectionModel.IntensitySettings futureIntensity = futureProfile.screenSpaceReflection.settings.intensity;
 		currentIntensity.reflectionMultiplier = Mathf.Lerp (currentIntensity.reflectionMultiplier, futureIntensity.reflectionMultiplier, rate);
@@ -135,6 +137,7 @@ public abstract class UpdatableProfile : MonoBehaviour
 			
 
 		// Screen Edge Mask
+
 		ScreenSpaceReflectionModel.ScreenEdgeMask screenEdgeMask = settings.screenEdgeMask;
 		screenEdgeMask.intensity = Mathf.Lerp (screenEdgeMask.intensity, futureProfile.screenSpaceReflection.settings.screenEdgeMask.intensity, rate);
 		settings.screenEdgeMask = screenEdgeMask;
@@ -149,6 +152,7 @@ public abstract class UpdatableProfile : MonoBehaviour
 		transitionProfile.depthOfField.enabled = EnableOrDisableEffect (oldProfile.depthOfField.enabled, futureProfile.depthOfField.enabled, rate, DOF_ACTIVATION_LIMIT);
 
 		// All settings
+
 		DepthOfFieldModel.Settings currentSettings = oldProfile.depthOfField.settings;
 		DepthOfFieldModel.Settings futureSettings = futureProfile.depthOfField.settings;
 
@@ -185,10 +189,12 @@ public abstract class UpdatableProfile : MonoBehaviour
 		EyeAdaptationModel.Settings futureSettings = futureProfile.eyeAdaptation.settings;
 
 		// Luminosity Range
+
 		currentSettings.logMin = (int)Mathf.Lerp (currentSettings.logMin, futureSettings.logMin, rate);
 		currentSettings.logMax = (int)Mathf.Lerp (currentSettings.logMax, futureSettings.logMax, rate);
 
 		// Auto Exposure
+
 		currentSettings.lowPercent = Mathf.Lerp (currentSettings.lowPercent, futureSettings.lowPercent, rate);
 		currentSettings.highPercent = Mathf.Lerp (currentSettings.highPercent, futureSettings.highPercent, rate);
 		currentSettings.minLuminance = Mathf.Lerp (currentSettings.minLuminance, futureSettings.minLuminance, rate);
@@ -213,6 +219,7 @@ public abstract class UpdatableProfile : MonoBehaviour
 
 
 		// Bloom
+
 		BloomModel.BloomSettings currentBloom = settings.bloom;
 		BloomModel.BloomSettings futureBloom = futureProfile.bloom.settings.bloom;
 		currentBloom.intensity = Mathf.Lerp (currentBloom.intensity, futureBloom.intensity, rate);
@@ -224,6 +231,7 @@ public abstract class UpdatableProfile : MonoBehaviour
 
 
 		// Lens Dirt
+
 		BloomModel.LensDirtSettings currentLensDirt = settings.lensDirt;
 //		currentLensDirt.texture = ; 
 		currentLensDirt.intensity = Mathf.Lerp (currentLensDirt.intensity, futureProfile.bloom.settings.lensDirt.intensity, rate);
@@ -234,7 +242,51 @@ public abstract class UpdatableProfile : MonoBehaviour
 
 	protected void LerpColorGrading (float rate)
 	{
+		float CG_ACTIVATION_LIMIT = 0.05f;
 
+		transitionProfile.colorGrading.enabled = EnableOrDisableEffect (oldProfile.colorGrading.enabled, futureProfile.colorGrading.enabled, rate, CG_ACTIVATION_LIMIT);
+
+		ColorGradingModel.Settings settings = oldProfile.colorGrading.settings;
+
+		ColorGradingModel.TonemappingSettings currentTone = settings.tonemapping;
+		ColorGradingModel.TonemappingSettings futureTone = futureProfile.colorGrading.settings.tonemapping;
+		ColorGradingModel.BasicSettings currentBasic = settings.basic;
+		ColorGradingModel.BasicSettings futureBasic = futureProfile.colorGrading.settings.basic;
+		ColorGradingModel.ColorWheelsSettings currentWheel = settings.colorWheels;
+		ColorGradingModel.ColorWheelsSettings futureWheel = futureProfile.colorGrading.settings.colorWheels;
+
+		// TONEMAPPING
+
+		currentTone.neutralBlackIn = Mathf.Lerp (currentTone.neutralBlackIn, futureTone.neutralBlackIn, rate);
+		currentTone.neutralWhiteIn = Mathf.Lerp (currentTone.neutralWhiteIn, futureTone.neutralWhiteIn, rate);
+		currentTone.neutralBlackOut = Mathf.Lerp (currentTone.neutralBlackOut, futureTone.neutralBlackOut, rate);
+		currentTone.neutralWhiteOut = Mathf.Lerp (currentTone.neutralWhiteOut, futureTone.neutralWhiteOut, rate);
+		currentTone.neutralWhiteLevel = Mathf.Lerp (currentTone.neutralWhiteLevel, futureTone.neutralWhiteLevel, rate);
+		currentTone.neutralWhiteClip = Mathf.Lerp (currentTone.neutralWhiteClip, futureTone.neutralWhiteClip, rate);
+
+		// BASIC
+
+		currentBasic.postExposure = Mathf.Lerp (currentBasic.postExposure, futureBasic.postExposure, rate);
+		currentBasic.temperature = Mathf.Lerp (currentBasic.temperature, futureBasic.temperature, rate);
+		currentBasic.tint = Mathf.Lerp (currentBasic.tint, futureBasic.tint, rate);
+		currentBasic.hueShift = Mathf.Lerp (currentBasic.hueShift, futureBasic.hueShift, rate);
+		currentBasic.saturation = Mathf.Lerp (currentBasic.saturation, futureBasic.saturation, rate);
+		currentBasic.contrast = Mathf.Lerp (currentBasic.contrast, futureBasic.contrast, rate);
+
+		// COLOR WHEELS
+
+		currentWheel.log.slope = Color.Lerp (currentWheel.log.slope, futureWheel.log.slope, rate);
+		currentWheel.log.power = Color.Lerp (currentWheel.log.power, futureWheel.log.power, rate);
+		currentWheel.log.offset = Color.Lerp (currentWheel.log.offset, futureWheel.log.offset, rate);
+		currentWheel.linear.lift = Color.Lerp (currentWheel.linear.lift, futureWheel.linear.lift, rate);
+		currentWheel.linear.gamma = Color.Lerp (currentWheel.linear.gamma, futureWheel.linear.gamma, rate);
+		currentWheel.linear.gain = Color.Lerp (currentWheel.linear.gain, futureWheel.linear.gain, rate);
+
+		settings.tonemapping = currentTone;
+		settings.basic = currentBasic;
+		settings.colorWheels = currentWheel;
+
+		transitionProfile.colorGrading.settings = settings;
 	}
 
 	protected void LerpLUT (float rate)
