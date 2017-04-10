@@ -12,7 +12,6 @@ Collection of scripts that allow you to seamlessly transition between 2 PostProc
 ## What is not yet supported
 * Lerping booleans (we have the method, but it needs fine-tuning to be seamless)
 * Lerping textures (no method yet)
-* Color grading (too much work for the initial version and I hope to come up with a better coding solution)
 
 If you don't care about the rest of the staff from PostProcessing, just grab the "Transitions" folder. I haven't changed anything else (nor do I plan to)
 
