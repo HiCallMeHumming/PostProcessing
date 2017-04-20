@@ -363,13 +363,15 @@ public abstract class UpdatableProfile : MonoBehaviour
 
 	protected bool EnableOrDisableEffect (bool oldEnabled, bool futureEnabled, float rate, float activationLimit)
 	{
-		if (!oldEnabled && rate > activationLimit) {
+		if (oldEnabled == futureEnabled)
+			return futureEnabled;
+		else if (futureEnabled && rate > activationLimit) {
 			return true;
 		} else if (!futureEnabled && rate > 1 - activationLimit) {
 			return false;
 		}
 
-		return transitionProfile.motionBlur.enabled;
+		return futureEnabled;
 	}
 }
 
