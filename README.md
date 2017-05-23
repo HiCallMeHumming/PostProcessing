@@ -1,6 +1,8 @@
 # Transitions for the Post-processing Stack
 
-Collection of scripts that allow you to seamlessly transition between 2 PostProcessingProfiles based on time or distance
+Collection of scripts that allow you to seamlessly transition between 2 PostProcessingProfiles based on time or distance.
+
+May 23, 2017 Update: We are using the stable branch (v1) of Unity-Technologies/PostProcessing
 
 ## What is supported:
 * Seamless, fluid, smooth, awesome transitions
@@ -19,7 +21,7 @@ I have not tested Unity versions < 5.6. I have not extensively tested the smooth
 
 ## How to use - Time
 
-1. Create 2 PostProcessingProfiles, we'll call them A and B. 
+1. Create 2 PostProcessingProfiles, we'll call them A and B.
 *Hint: Try to use the same effects in both, but change the numeric values significantly to notice the effect!*
     1. Add a PostProcessingBehaviour to your camera
 	  2. Assign profile A to it
@@ -30,10 +32,3 @@ I have not tested Unity versions < 5.6. I have not extensively tested the smooth
     1. Assign profile B as Future Profile
     2. Assign how long you want the transition to take under Config/Time for Transition
 4. Click Play, move inside the trigger zone and watch the transition effect!
-
-
-# Post-processing Stack
-
-Need help ? Check out the [quick start guide](https://github.com/Unity-Technologies/PostProcessing/wiki) and [the official forums](https://forum.unity3d.com/forums/image-effects.96/) !
-
-Found a bug ? Let us know and [post an issue](https://github.com/Unity-Technologies/PostProcessing/issues) !
