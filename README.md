@@ -2,7 +2,12 @@
 
 Collection of scripts that allow you to seamlessly transition between 2 PostProcessingProfiles based on time or distance.
 
+# Updates
+
 May 23, 2017 Update: We are using the stable branch (v1) of Unity-Technologies/PostProcessing
+February 2, 2018 Update: The v2 branch of Unity-Technologies/PostProcessing now supports most of the operations done here, out of the box: https://github.com/Unity-Technologies/PostProcessing
+
+This means that if you are using 2017.1+ you probably want to go there and consider this repo DEPRECATED
 
 ## What is supported:
 * Seamless, fluid, smooth, awesome transitions
